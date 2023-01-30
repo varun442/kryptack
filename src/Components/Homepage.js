@@ -9,9 +9,9 @@ const Homepage = () => {
   const { Title } = Typography;
 
   const { data, isFetching } = useGetCryptosQuery(10);
-  console.log(data)
+  // console.log(data)
   const globalStats = data?.data?.stats;
-  console.log(globalStats);
+  // console.log(globalStats);
 
   if (isFetching) return "Loading...";
   return (
