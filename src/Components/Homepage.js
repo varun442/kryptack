@@ -1,18 +1,17 @@
 import React from "react";
 import millify from "millify";
-import { Typography, Row, Col, Statistic } from "antd";
+import { Typography, Row, Col, Statistic, Button } from "antd";
 import { Link } from "react-router-dom";
-import { useGetCryptosQuery } from "../Services/cryptoapi";
+import { useGetCryptosQuery, useGetNewCoinsQuery } from "../Services/cryptoapi";
 import { Cryptocurrencies, News } from "../Components";
 
 const Homepage = () => {
   const { Title } = Typography;
 
   const { data, isFetching } = useGetCryptosQuery(10);
-  // console.log(data)
+  const { data: coins } = useGetNewCoinsQuery();
   const globalStats = data?.data?.stats;
-  // console.log(globalStats);
-
+  
   if (isFetching) return "Loading...";
   return (
     <>
@@ -20,31 +19,35 @@ const Homepage = () => {
         Global Crypto Stats
       </Title>
       <Row>
-        <Col span={12}>
+        <Col span={8}>
           <Statistic
             title="Total Cryptocurrencies"
             value={millify(globalStats.total)}
           ></Statistic>
         </Col>
-        <Col span={12}>
+
+        <Col span={8}>
           <Statistic
             title="Total Exchanges"
             value={globalStats.totalExchanges}
           ></Statistic>
         </Col>
-        <Col span={12}>
+
+        <Col span={8}>
           <Statistic
             title="Total Market Cap"
             value={millify(globalStats.totalMarketCap)}
           ></Statistic>
         </Col>
-        <Col span={12}>
+
+        <Col span={8}>
           <Statistic
             title="Total 24h Volume"
             value={millify(globalStats.total24hVolume)}
           ></Statistic>
         </Col>
-        <Col span={12}>
+
+        <Col span={8}>
           <Statistic
             title="Total Markets"
             value={millify(globalStats.totalMarkets)}

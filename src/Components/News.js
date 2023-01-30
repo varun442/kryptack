@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
 import moment from "moment";
-
+import Pagination from "./Pagination";
 import { useGetCryptosQuery } from "../Services/cryptoapi";
 import { newsAPIUrl, options } from "../Services/cryptoNewsApi";
 import Loader from "./Loader";
@@ -16,9 +16,12 @@ const News = ({ simplified }) => {
   const [cryptoNews, setCryptoNews] = useState([]);
   const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
   const { data } = useGetCryptosQuery(100);
-  const count = simplified ? 6 : 12;
-  const [isLoading, setIsLoading] = useState(true);
-  
+  const count = simplified ? 6 : 100;
+  const [isLoading, setIsLoading] = useState(false);
+  console.log(cryptoNews.length);
+  //For Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [newsPerPage] = useState(6);
 
   const fetchNews = async () => {
     try {
@@ -33,12 +36,19 @@ const News = ({ simplified }) => {
     }
   };
   useEffect(() => {
+    setIsLoading(true);
     fetchNews();
     setIsLoading(false);
   }, [newsCategory]);
 
-  
+  const indexOfLastNews = currentPage * newsPerPage;
+  const indexOfFirstNews = indexOfLastNews - newsPerPage;
+  const paginatedNews = cryptoNews.slice(indexOfFirstNews, indexOfLastNews);
+  console.log(paginatedNews);
 
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   if (isLoading)
     return (
       <div>
@@ -70,7 +80,8 @@ const News = ({ simplified }) => {
               </Select>
             </Col>
           )}
-          {cryptoNews.map((news, i) => (
+
+          {paginatedNews.map((news, i) => (
             <Col xs={24} sm={12} lg={8} key={i}>
               <Card hoverable className="news-card">
                 <a href={news.url} target="_blank" rel="noreferrer">
@@ -110,6 +121,14 @@ const News = ({ simplified }) => {
             </Col>
           ))}
         </Row>
+      )}
+      {!simplified && (
+        <Pagination
+          className="paginate"
+          totalNews={cryptoNews.length}
+          newsPerPage={newsPerPage}
+          paginate={paginate}
+        ></Pagination>
       )}
     </>
   );

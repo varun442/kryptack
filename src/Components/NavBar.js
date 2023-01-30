@@ -7,6 +7,7 @@ import {
   BulbOutlined,
   FundOutlined,
   MenuOutlined,
+  SwapOutlined
 } from "@ant-design/icons";
 import icon from "../img/crypto-img.png";
 
@@ -46,6 +47,7 @@ const NavBar = () => {
           <Menu.Item key="1" icon={<HomeOutlined />}>
             <Link to="/">Home</Link>
           </Menu.Item>
+          
           <Menu.Item key="2" icon={<MoneyCollectOutlined />}>
             <Link to="/cryptocurrencies">Cryptocurrencies</Link>
           </Menu.Item>
