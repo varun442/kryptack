@@ -1,3 +1,23 @@
+# KryptaX / React Cryptocurrency App
+
+Cryptorium provides various services about cryptocurrencies such as the latest crypto news, the top 10 cryptocurrencies in the world, showing market stats. In this project, I used Coinranking API to get the data about all cryptocurrencies. Then Bing News Search API helped to provide news resources. You can find these in [RapidAPI](https://rapidapi.com/Coinranking/api/coinranking1)
+
+Accessing the exchanges section is not possible because a premium plan is required. I use a free plan.
+
+I built this project because I was aiming to enhance my state management skills using redux and also UI design skills using Ant Design.
+
+
+# Topics
+* State Management using Redux Toolkit
+* UI Creation using Ant Design
+* Creating charts using Chart.js
+* Fetching data using RapidAPI
+* Responsive Design
+
+
+# Demo Link 
+The site is deployed on Netlify. You can use this app [here](https://kryptax.netlify.app/) 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
