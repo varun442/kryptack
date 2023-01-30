@@ -14,6 +14,8 @@ I built this project because I was aiming to enhance my state management skills 
 * Fetching data using RapidAPI
 * Responsive Design
 
+# Demo Video
+![alt-text](https://github.com/varun442/kryptax/blob/master/KyrptaX.gif)
 
 # Demo Link 
 The site is deployed on Netlify. You can use this app [here](https://kryptax.netlify.app/) 
